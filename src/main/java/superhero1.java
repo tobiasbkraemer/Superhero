@@ -13,17 +13,24 @@ public class superhero1 {
         String rigtigNavn = keyboard.nextLine();
         System.out.println("Hvad kan din superhelt?");
         String superkræfter = keyboard.nextLine();
-        System.out.println("Er dine superhelt et menneske?");
+        System.out.println("Er din superhelt et menneske? true or false");
         boolean menneske = keyboard.nextBoolean();
         System.out.println("Hvornår fik din superhelt sine kræfter?");
         int skabelsesår = keyboard.nextInt();
         System.out.println("Hvad er din superhelts styrkeniveau?");
         double styrkeniveau = keyboard.nextDouble();
 
+        helteinfo hero2 = new helteinfo(kaldeNavn,rigtigNavn,superkræfter,menneske,skabelsesår,styrkeniveau);
+
         System.out.println("Her er din superhelts informationer: "+"\n"+kaldeNavn+"\n"+rigtigNavn+"\n"+superkræfter+"\n"+menneske+"\n"+skabelsesår+"\n"+styrkeniveau);
+
+        System.out.println("Her er din superhelts informationer: "+hero2);
+
 
 
     }
+
+
 
 
 
