@@ -24,14 +24,13 @@ public class superhero1 {
 
         System.out.println("Her er din superhelts informationer: "+"\n"+kaldeNavn+"\n"+rigtigNavn+"\n"+superkræfter+"\n"+menneske+"\n"+skabelsesår+"\n"+styrkeniveau);
 
-        System.out.println("Her er din superhelts informationer: "+hero2);
+        Database database = new Database();
+        for (helteinfo helt : database.getHelteinfos()) {
+            System.out.println(helt.getKaldeNavn()+"\n"+helt.getRigtigNavn()+"\n"+ helt.getSuperkræfter()+"\n"+ helt.getMenneske()+"\n"+ helt.getSkabelsesår()+"\n"+ helt.getStyrkeniveau());
+        }
 
 
 
     }
-
-
-
-
 
 }
