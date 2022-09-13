@@ -38,4 +38,8 @@ public class helteinfo {
     public double getStyrkeniveau() {
         return styrkeniveau;
     }
+
+    public void setKaldeNavn(String kaldeNavn) {
+        this.kaldeNavn = kaldeNavn;
+    }
 }

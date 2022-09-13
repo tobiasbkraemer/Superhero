@@ -1,15 +1,14 @@
 public class Database {
-    helteinfo[] helteinfos;
 
+    private helteinfo[] listen = new helteinfo[5];
+    private int index = 0;
 
-    public Database(){
-
-        helteinfo hero1 = new helteinfo("Bobamok","Bob","Svæve",true,1992,13);
-        helteinfos = new helteinfo[]{hero1};
+    public void createHelt(String kaldeNavn, String rigtigNavn, String superkræfter, boolean menneske, int skabelsesår, double styrkeniveau) {
+        helteinfo hero = new helteinfo(kaldeNavn, rigtigNavn, superkræfter, menneske, skabelsesår, styrkeniveau);
+        System.out.println(hero);
+        listen[index] = hero;
+        index++;
     }
 
-    public helteinfo[] getHelteinfos() {
-        return helteinfos;
-    }
 }
 
