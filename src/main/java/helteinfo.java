@@ -39,7 +39,9 @@ public class helteinfo {
         return styrkeniveau;
     }
 
-    public void setKaldeNavn(String kaldeNavn) {
-        this.kaldeNavn = kaldeNavn;
+
+    @Override
+    public String toString() {
+        return kaldeNavn + "\n"+ rigtigNavn+ "\n"+superkræfter+ "\n"+menneske+ "\n"+skabelsesår+ "\n"+styrkeniveau;
     }
 }
