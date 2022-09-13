@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class superhero1 {
@@ -8,7 +9,7 @@ public class superhero1 {
 
 
         do {
-            System.out.println("MENU"+"\n"+"-".repeat(21)+"\n" + "1. Opret en superhelt" + "\n" + "9. Luk programmet");
+            System.out.println("MENU"+"\n"+"-".repeat(21)+"\n" + "1. Opret en superhelt" +"\n"+"(...)"+"\n"+"5. Superhelteliste "+"\n"+"(...)"+ "\n" + "9. Luk programmet");
             int menu = keyboard.nextInt();
 
             if (menu == 1) {
@@ -22,7 +23,15 @@ public class superhero1 {
                 System.out.println("Hvad kan din superhelt?");
                 String superkræfter = keyboard.nextLine();
                 System.out.println("Er din superhelt et menneske? true or false");
-                boolean menneske = keyboard.nextBoolean();
+                String svar = keyboard.nextLine();
+
+                boolean menneske=true;
+                if (svar.equals("Ja")) {
+                    menneske=true;
+                } else if(svar.equals("Nej")) {
+                    menneske=false;
+                }
+
                 System.out.println("Hvornår fik din superhelt sine kræfter?");
                 int skabelsesår = keyboard.nextInt();
                 System.out.println("Hvad er din superhelts styrkeniveau?");
@@ -31,7 +40,14 @@ public class superhero1 {
 
             } else if (menu == 9) {
                 System.out.println("Lukker programmet...");
+                System.exit(9);
+            } else if (menu == 5) {
+                System.out.println("Liste over helte: "+"\n");
+                System.out.println(database.superhelte.addAll(List.of()));
+
+
             }
+
 
         }while(true);
 

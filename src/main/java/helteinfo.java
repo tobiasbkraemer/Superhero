@@ -39,6 +39,15 @@ public class helteinfo {
         return styrkeniveau;
     }
 
+/*
+    public void setMenneske(String svar) {
+        if (svar.equals("Ja")) {
+            this.menneske =true;
+        } else if(svar.equals("Nej")) {
+            this.menneske=false;
+        }
+    }
+*/
 
     @Override
     public String toString() {
