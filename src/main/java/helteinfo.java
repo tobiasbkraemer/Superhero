@@ -51,6 +51,6 @@ public class helteinfo {
 
     @Override
     public String toString() {
-        return kaldeNavn + "\n"+ rigtigNavn+ "\n"+superkræfter+ "\n"+menneske+ "\n"+skabelsesår+ "\n"+styrkeniveau;
+        return "Superheltenavn: "+kaldeNavn + "\n"+"Oprindelige identitet: "+ rigtigNavn+ "\n"+"Superkræfter: "+superkræfter+ "\n"+"Menneskestatus: "+menneske+ "\n"+"Skabelsesår: "+skabelsesår+ "\n"+"Styrkeniveau: "+styrkeniveau+"\n";
     }
 }

@@ -22,7 +22,7 @@ public class superhero1 {
                 String rigtigNavn = keyboard.nextLine();
                 System.out.println("Hvad kan din superhelt?");
                 String superkræfter = keyboard.nextLine();
-                System.out.println("Er din superhelt et menneske? true or false");
+                System.out.println("Er din superhelt et menneske? Ja eller Nej");
                 String svar = keyboard.nextLine();
 
                 boolean menneske=true;
@@ -43,7 +43,7 @@ public class superhero1 {
                 System.exit(9);
             } else if (menu == 5) {
                 System.out.println("Liste over helte: "+"\n");
-                System.out.println(database.superhelte.addAll(List.of()));
+                System.out.println(database.superhelte);
 
 
             }
