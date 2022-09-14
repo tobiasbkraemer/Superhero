@@ -43,7 +43,7 @@ public class superhero1 {
                 System.exit(9);
             } else if (menu == 5) {
                 System.out.println("Liste over helte: "+"\n");
-                System.out.println(database.superhelte);
+                System.out.println(database.getSuperhelte());
 
 
             }
