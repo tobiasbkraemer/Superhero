@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class superhero1 {
@@ -6,11 +5,17 @@ public class superhero1 {
 
         Database database = new Database();
         Scanner keyboard = new Scanner(System.in);
+        database.createTestData();
+
 
 
         do {
-            System.out.println("MENU"+"\n"+"-".repeat(21)+"\n" + "1. Opret en superhelt" +"\n"+"(...)"+"\n"+"5. Superhelteliste "+"\n"+"(...)"+ "\n" + "9. Luk programmet");
+            System.out.println("MENU"+"\n"+"-".repeat(21)+"\n" + "1. Opret en superhelt" +"\n"
+                    +"(...)"+ "\n"+"3. Søg efter superhelt" +"\n"
+                    +"(...)"+ "\n"+"5. Superhelteliste "+"\n"
+                    +"(...)"+ "\n" + "9. Luk programmet");
             int menu = keyboard.nextInt();
+            keyboard.nextLine();
 
             if (menu == 1) {
                 keyboard.nextLine();
@@ -38,6 +43,10 @@ public class superhero1 {
                 double styrkeniveau = keyboard.nextDouble();
                 database.createHelt(kaldeNavn, rigtigNavn, superkræfter, menneske, skabelsesår, styrkeniveau);
 
+                System.out.println("\n"+"Indberettede superhelte:"+"\n"+"-".repeat(24));
+                for(helteinfo helt : database.getSuperhelte())
+                    System.out.println(helt);
+
             } else if (menu == 9) {
                 System.out.println("Lukker programmet...");
                 System.exit(9);
@@ -45,6 +54,11 @@ public class superhero1 {
                 System.out.println("Liste over helte: "+"\n");
                 System.out.println(database.getSuperhelte());
 
+            } else if (menu ==3) {
+                System.out.println("Indtast superheltenavn:");
+                String search = keyboard.nextLine();
+                helteinfo søgtesuperhelt = database.searchFor(search);
+                System.out.println(søgtesuperhelt);
 
             }
 
