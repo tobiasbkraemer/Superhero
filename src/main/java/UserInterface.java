@@ -2,18 +2,44 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    Scanner keyboard = new Scanner(System.in);
+    Database database = new Database();
+
     public void startProgram() {
-        Database database = new Database();
-        Scanner keyboard = new Scanner(System.in);
+
         database.createTestData();
+
         do {
-            System.out.println("MENU" + "\n" + "-".repeat(21) + "\n" + "1. Opret en superhelt" + "\n"
+            startside();
+
+            int menu = keyboard.nextInt();
+            if (menu == 1) {
+                opretEnHelt1();
+            }
+            else if (menu == 3) {
+                søgEfterHelt3();
+            }
+            else if (menu==5) {
+                listeOverhelte5();
+            }
+            else if (menu==9) {
+                lukProgrammet9();
+            }
+
+        } while (true);
+
+
+    }
+    public void startside () {
+
+        System.out.println("MENU" + "\n" + "-".repeat(21) + "\n" + "1. Opret en superhelt" + "\n"
                     + "(...)" + "\n" + "3. Søg efter superhelt" + "\n"
                     + "(...)" + "\n" + "5. Superhelteliste " + "\n"
                     + "(...)" + "\n" + "9. Luk programmet");
-            int menu = keyboard.nextInt();
 
-            if (menu == 1) {
+    }
+    public void opretEnHelt1 () {
+
                 keyboard.nextLine();
                 System.out.println(".: OPRET EN SUPERHELT :.");
                 System.out.println("-".repeat(24));
@@ -42,23 +68,27 @@ public class UserInterface {
                 System.out.println("\n" + "Indberettede superhelte:" + "\n" + "-".repeat(24));
                 for (helteinfo helt : database.getSuperhelte())
                     System.out.println(helt);
+    }
+    public void søgEfterHelt3 () {
 
-            } else if (menu == 9) {
-                System.out.println("Lukker programmet...");
-                System.exit(9);
-            } else if (menu == 5) {
-                System.out.println("Liste over helte: " + "\n");
-                System.out.println(database.getSuperhelte());
+        keyboard.nextLine();
+        System.out.println("Indtast superheltenavn:");
+        String search = keyboard.nextLine();
+        helteinfo søgtesuperhelt = database.searchFor(search);
+        System.out.println(søgtesuperhelt);
 
-            } else if (menu == 3) {
-                System.out.println("Indtast superheltenavn:");
-                String search = keyboard.nextLine();
-                helteinfo søgtesuperhelt = database.searchFor(search);
-                System.out.println(søgtesuperhelt);
+    }
+    public void listeOverhelte5 () {
+        System.out.println("Liste over helte: " + "\n");
+        System.out.println(database.getSuperhelte());
 
-            }
+    }
+    public void lukProgrammet9 () {
 
+        System.out.println("Lukker programmet...");
+        System.exit(9);
 
-        } while (true);
     }
 }
+
+
