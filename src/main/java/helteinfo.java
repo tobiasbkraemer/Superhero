@@ -53,4 +53,29 @@ public class helteinfo {
     public String toString() {
         return "\n"+"Superheltenavn: "+kaldeNavn + "\n"+"Oprindelige identitet: "+ rigtigNavn+ "\n"+"Superkræfter: "+superkræfter+ "\n"+"Menneskestatus: "+menneske+ "\n"+"Skabelsesår: "+skabelsesår+ "\n"+"Styrkeniveau: "+styrkeniveau+"\n";
     }
+
+    public void setKaldeNavn(String kaldeNavn) {
+        this.kaldeNavn = kaldeNavn;
+    }
+
+    public void setRigtigeNavn(String rigtigNavn) {
+        this.rigtigNavn = rigtigNavn;
+    }
+
+    public void setSuperkræfter(String superkræfter){
+        this.superkræfter=superkræfter;
+    }
+
+    public void setMenneske(boolean menneske){
+        this.menneske=menneske;
+    }
+
+    public void setSkabelsesår(int skabelsesår){
+        this.skabelsesår=skabelsesår;
+    }
+
+    public void setStyrkeniveau(double styrkeniveau) {
+        this.styrkeniveau=styrkeniveau;
+    }
+
 }

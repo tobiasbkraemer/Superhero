@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Database {
@@ -5,7 +6,7 @@ public class Database {
 
     public void createTestData() {
         createHelt("Hulk", "Bruce Banner", "Styrke stiger med vrede", true, 1982, 198);
-        createHelt("Thor", "Thor Odinson", "Torden", false, 452, 201);
+        createHelt("Thorman", "Thor Odinson", "Torden", false, 452, 201);
         createHelt("Iron Man", "Tony Stark", "Klog og rig", true, 1984, 37);
     }
 
@@ -19,16 +20,16 @@ public class Database {
         return superhelte;
     }
 
-    public helteinfo searchFor(String searchTerm) {
+    public ArrayList<helteinfo> searchFor(String searchTerm) {
+
+        ArrayList<helteinfo> searchResult = new ArrayList<>();
+
         for (helteinfo helt : superhelte) {
-            if (searchTerm.contains(helt.getKaldeNavn())) {
-                return helt;
-            }
-            if (searchTerm.equalsIgnoreCase(helt.getKaldeNavn())) {
-                return helt;
+            if (helt.getKaldeNavn().toLowerCase().contains(searchTerm.toLowerCase())) {
+                searchResult.add(helt);
             }
         }
-        return null;
+        return searchResult;
     }
 }
 
