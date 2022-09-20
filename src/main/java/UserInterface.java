@@ -135,7 +135,7 @@ public class UserInterface {
             System.out.println("Menneske: " + edithelt.getMenneske());
             String newMenneske = keyboard.nextLine();
             if (!newMenneske.isEmpty())
-                edithelt.setMenneske(newMenneske);
+                edithelt.setMenneske(Boolean.parseBoolean(newMenneske));
 
             System.out.println("Skabelsesår: " + edithelt.getSkabelsesår());
             do {
