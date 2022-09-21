@@ -12,35 +12,34 @@ public class UserInterface {
         database.createTestData();
         boolean writingError;
         do {
-            startside();
+            do {
+                startside();
 
-            try {
-                int menu = keyboard.nextInt();
-                keyboard.nextLine();
+                try {
+                    int menu = keyboard.nextInt();
+                    keyboard.nextLine();
 
-                if (menu == 1) {
-                    opretEnHelt();
-                } else if (menu == 3) {
-                    søgEfterHelt();
-                } else if (menu == 5) {
-                    listeOverhelte();
-                } else if (menu == 7) {
-                    redigerHelte();
-                } else if (menu == 9) {
-                    lukProgrammet();
+                    if (menu == 1) {
+                        opretEnHelt();
+                    } else if (menu == 3) {
+                        søgEfterHelt();
+                    } else if (menu == 5) {
+                        listeOverhelte();
+                    } else if (menu == 7) {
+                        redigerHelte();
+                    } else if (menu == 9) {
+                        lukProgrammet();
+                    }
+                    writingError = false;
+                } catch (InputMismatchException ime) {
+                    System.out.println("Fejl opstået");
+                    System.out.println("Indtast MENU i tal");
+                    keyboard.nextLine();
+                    writingError = true;
                 }
-                writingError = false;
-            } catch (InputMismatchException ime) {
-                System.out.println("Fejl opstået");
-                System.out.println("Indtast styrkeniveau i tal");
-                keyboard.nextLine();
-                writingError = true;
-            }
-            while (writingError == true) ;
 
+            } while (writingError == true);
         } while (true);
-
-
     }
 
     public void startside() {
@@ -151,7 +150,7 @@ public class UserInterface {
 
     public void redigerHelte() {
 
-        boolean writingError = false;
+        boolean writingError;
         {
             System.out.println("Superheroes");
             for (int i = 0; i < database.getSuperhelte().size(); i++) {
@@ -159,8 +158,19 @@ public class UserInterface {
             }
 
             System.out.print("Indtast nummer for superhelt: ");
-            int number = keyboard.nextInt();
-            keyboard.nextLine();
+            int number = 0;
+            do {
+                try {
+                    number = keyboard.nextInt();
+                    writingError = false;
+
+                } catch (InputMismatchException nfe) {
+                    System.out.println("Fejl opstået");
+                    System.out.println("Indtast nummeret i tal");
+                    keyboard.nextLine();
+                    writingError = true;
+                }
+            } while (writingError == true);
 
             helteinfo edithelt = database.getSuperhelte().get(number - 1);
             System.out.println("Redigere superhelt information: " + edithelt);
@@ -171,7 +181,7 @@ public class UserInterface {
             if (!newNavn.isEmpty())
                 edithelt.setKaldeNavn(newNavn);
 
-            System.out.println("Rigtige navn:" + edithelt.getRigtigNavn());
+            System.out.println("Rigtige navn: " + edithelt.getRigtigNavn());
             String newAlias = keyboard.nextLine();
             if (!newAlias.isEmpty())
                 edithelt.setRigtigeNavn(newAlias);
@@ -240,23 +250,3 @@ public class UserInterface {
 
     }
 }
-
-/*String input = keyboard.nextLine();
-
-do {
-            try {
-                menu = Integer.parseInt(input);
-            }
-            catch (NumberFormatException e){
-                System.out.println("Der skete en fejl");
-            }
-}while(true)
-            */
-
-/*
-while(!keyboard.hasNextInt()){
-        System.out.println()
-        keyboard.next)
-        }
-
-*/
