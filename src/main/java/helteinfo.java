@@ -39,19 +39,14 @@ public class helteinfo {
         return styrkeniveau;
     }
 
-/*
-    public void setMenneske(String svar) {
-        if (svar.equals("Ja")) {
-            this.menneske =true;
-        } else if(svar.equals("Nej")) {
-            this.menneske=false;
-        }
-    }
-*/
-
     @Override
     public String toString() {
-        return "\n"+"Superheltenavn: "+kaldeNavn + "\n"+"Oprindelige identitet: "+ rigtigNavn+ "\n"+"Superkræfter: "+superkræfter+ "\n"+"Menneskestatus: "+menneske+ "\n"+"Skabelsesår: "+skabelsesår+ "\n"+"Styrkeniveau: "+styrkeniveau+"\n";
+        return "\n"+"Superheltenavn: "+kaldeNavn +
+                "\n" +"Oprindelige identitet: "+ rigtigNavn+
+                "\n"+"Superkræfter: "+superkræfter+
+                "\n"+"Menneskestatus: "+menneske+
+                "\n"+"Skabelsesår: "+skabelsesår+
+                "\n"+"Styrkeniveau: "+styrkeniveau+"\n";
     }
 
     public void setKaldeNavn(String kaldeNavn) {

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -9,97 +10,145 @@ public class UserInterface {
     public void startProgram() {
 
         database.createTestData();
-
+        boolean writingError;
         do {
             startside();
 
-            int menu = keyboard.nextInt();
-            keyboard.nextLine();
-            if (menu == 1) {
-                opretEnHelt();
+            try {
+                int menu = keyboard.nextInt();
+                keyboard.nextLine();
+
+                if (menu == 1) {
+                    opretEnHelt();
+                } else if (menu == 3) {
+                    søgEfterHelt();
+                } else if (menu == 5) {
+                    listeOverhelte();
+                } else if (menu == 7) {
+                    redigerHelte();
+                } else if (menu == 9) {
+                    lukProgrammet();
+                }
+                writingError = false;
+            } catch (InputMismatchException ime) {
+                System.out.println("Fejl opstået");
+                System.out.println("Indtast styrkeniveau i tal");
+                keyboard.nextLine();
+                writingError = true;
             }
-            else if (menu == 3) {
-                søgEfterHelt();
-            }
-            else if (menu==5) {
-                listeOverhelte();
-            }
-            else if (menu==7) {
-                redigerHelte();
-            }
-            else if (menu==9) {
-                lukProgrammet();
-            }
+            while (writingError == true) ;
 
         } while (true);
 
 
     }
-    public void startside () {
+
+    public void startside() {
 
         System.out.println("MENU" + "\n" + "-".repeat(21) + "\n" + "1. Opret en superhelt" + "\n"
-                    + "(...)" + "\n" + "3. Søg efter superhelt" + "\n"
-                    + "(...)" + "\n" + "5. Superhelteliste " + "\n"
-                    + "(...)" + "\n" + "7. Rediger superhelt " + "\n"
-                    + "(...)" + "\n" + "9. Luk programmet");
+                + "(...)" + "\n" + "3. Søg efter superhelt" + "\n"
+                + "(...)" + "\n" + "5. Superhelteliste " + "\n"
+                + "(...)" + "\n" + "7. Rediger superhelt " + "\n"
+                + "(...)" + "\n" + "9. Luk programmet");
 
     }
+
     public void opretEnHelt() {
 
+
+        boolean writingError;
+
+        System.out.println(".: OPRET EN SUPERHELT :.");
+        System.out.println("-".repeat(24));
+
+        System.out.println("Hvad bliver din superhelt kaldt?");
+        String kaldeNavn = keyboard.nextLine();
+
+        System.out.println("Hvad hedder din superhelt rigtigt?");
+        String rigtigNavn = keyboard.nextLine();
+
+        System.out.println("Hvad kan din superhelt?");
+        String superkræfter = keyboard.nextLine();
+
+        System.out.println("Er din superhelt et menneske? j/n");
+        String svar = keyboard.nextLine();
+        while (!svar.equals("j") && !svar.equals("n")) {
+            System.out.println("Fejl. Tast \"j\" eller \"n\". ");
+            svar = keyboard.nextLine();
+        }
+        boolean menneske;
+        if (svar.equals("j")) {
+            menneske = true;
+        } else {
+            menneske = false;
+        }
+
+
+        System.out.println("Hvornår fik din superhelt sine kræfter?");
+        int skabelsesår = 0;
+        do {
+            try {
+                skabelsesår = keyboard.nextInt();
                 keyboard.nextLine();
-                System.out.println(".: OPRET EN SUPERHELT :.");
-                System.out.println("-".repeat(24));
-                System.out.println("Hvad bliver din superhelt kaldt?");
-                String kaldeNavn = keyboard.nextLine();
-                System.out.println("Hvad hedder din superhelt rigtigt?");
-                String rigtigNavn = keyboard.nextLine();
-                System.out.println("Hvad kan din superhelt?");
-                String superkræfter = keyboard.nextLine();
-                System.out.println("Er din superhelt et menneske? j/n");
-                String svar = keyboard.nextLine();
+                writingError = false;
 
-                boolean menneske = true;
-                if (svar.equals("j")) {
-                    menneske = true;
-                } else if (svar.equals("n")) {
-                    menneske = false;
-                }
+            } catch (InputMismatchException nfe) {
+                System.out.println("Fejl opstået");
+                System.out.println("Indtast skabelsesår i tal");
+                keyboard.nextLine();
+                writingError = true;
+            }
+        } while (writingError == true);
 
-                System.out.println("Hvornår fik din superhelt sine kræfter?");
-                int skabelsesår = keyboard.nextInt();
-                System.out.println("Hvad er din superhelts styrkeniveau?");
-                double styrkeniveau = keyboard.nextDouble();
-                database.createHelt(kaldeNavn, rigtigNavn, superkræfter, menneske, skabelsesår, styrkeniveau);
+        System.out.println("Hvad er din superhelts styrkeniveau?");
+        double styrkeniveau = 0;
+        do {
+            try {
+                styrkeniveau = keyboard.nextDouble();
+                keyboard.nextLine();
+                writingError = false;
+            } catch (InputMismatchException nfe) {
+                System.out.println("Fejl opstået");
+                System.out.println("Indtast styrkeniveau i tal");
+                keyboard.nextLine();
+                writingError = true;
+            }
+        } while (writingError == true);
 
-                System.out.println("\n" + "Indberettede superhelte:" + "\n" + "-".repeat(24));
-                for (helteinfo helt : database.getSuperhelte())
-                    System.out.println(helt);
+        database.createHelt(kaldeNavn, rigtigNavn, superkræfter, menneske, skabelsesår, styrkeniveau);
+
+        System.out.println("\n" + "Indberettede superhelte:" + "\n" + "-".repeat(24));
+        for (helteinfo helt : database.getSuperhelte())
+            System.out.println(helt);
     }
+
     public void søgEfterHelt() {
 
         System.out.println("Indtast superheltenavn:");
         String search = keyboard.nextLine();
         ArrayList<helteinfo> searchResult = database.searchFor(search);
-        if (searchResult.isEmpty()){
+        if (searchResult.isEmpty()) {
             System.out.println("Ingen helte fundet");
         } else {
             System.out.println("Helte fundet: ");
-            for(helteinfo helt : searchResult) {
+            for (helteinfo helt : searchResult) {
                 System.out.println("-".repeat(24));
-                System.out.println("Superheltenavn: "+helt.getKaldeNavn());
-                System.out.println("Rigtige navn: "+helt.getRigtigNavn());
-                System.out.println("Superkræfter: "+helt.getSuperkræfter());
-                System.out.println("Menneske: "+helt.getMenneske());
-                System.out.println("Skabelsesår: "+helt.getSkabelsesår());
-                System.out.println("Styrkeniveau: "+helt.getStyrkeniveau()+"\n");
+                System.out.println("Superheltenavn: " + helt.getKaldeNavn());
+                System.out.println("Rigtige navn: " + helt.getRigtigNavn());
+                System.out.println("Superkræfter: " + helt.getSuperkræfter());
+                System.out.println("Menneske: " + helt.getMenneske());
+                System.out.println("Skabelsesår: " + helt.getSkabelsesår());
+                System.out.println("Styrkeniveau: " + helt.getStyrkeniveau() + "\n");
             }
         }
     }
+
     public void listeOverhelte() {
         System.out.println("Liste over helte: " + "\n");
         System.out.println(database.getSuperhelte());
 
     }
+
     public void redigerHelte() {
 
         boolean writingError = false;
@@ -134,8 +183,21 @@ public class UserInterface {
 
             System.out.println("Menneske: " + edithelt.getMenneske());
             String newMenneske = keyboard.nextLine();
-            if (!newMenneske.isEmpty())
-                edithelt.setMenneske(Boolean.parseBoolean(newMenneske));
+
+            if (!newMenneske.isEmpty()) {
+                while (!newMenneske.equals("j") && !newMenneske.equals("n")) {
+                    System.out.println("Fejl. Tast \"j\" eller \"n\". ");
+                    newMenneske = keyboard.nextLine();
+                }
+
+                boolean menneske;
+                if (newMenneske.equals("j")) {
+                    menneske = true;
+                } else {
+                    menneske = false;
+                }
+                edithelt.setMenneske(menneske);
+            }
 
             System.out.println("Skabelsesår: " + edithelt.getSkabelsesår());
             do {
@@ -170,6 +232,7 @@ public class UserInterface {
 
         }
     }
+
     public void lukProgrammet() {
 
         System.out.println("Lukker programmet...");
@@ -180,9 +243,20 @@ public class UserInterface {
 
 /*String input = keyboard.nextLine();
 
+do {
             try {
                 menu = Integer.parseInt(input);
             }
             catch (NumberFormatException e){
                 System.out.println("Der skete en fejl");
-            }*/
+            }
+}while(true)
+            */
+
+/*
+while(!keyboard.hasNextInt()){
+        System.out.println()
+        keyboard.next)
+        }
+
+*/

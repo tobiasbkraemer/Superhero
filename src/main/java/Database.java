@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Database {
@@ -6,11 +5,12 @@ public class Database {
 
     public void createTestData() {
         createHelt("Hulk", "Bruce Banner", "Styrke stiger med vrede", true, 1982, 198);
-        createHelt("Thorman", "Thor Odinson", "Torden", false, 452, 201);
+        createHelt("Thor", "Thor Odinson", "Torden", false, 452, 201);
         createHelt("Iron Man", "Tony Stark", "Klog og rig", true, 1984, 37);
+        createHelt("Spider-man", "Peter Parker","Edderkoppeevner", true, 2000, 195);
     }
 
-    public void createHelt(String kaldeNavn, String rigtigNavn, String superkræfter, boolean menneske, int skabelsesår, double styrkeniveau) {
+    public void createHelt(String kaldeNavn, String rigtigNavn, String superkræfter, boolean menneske, int skabelsesår, double styrkeniveau){
         helteinfo hero = new helteinfo(kaldeNavn, rigtigNavn, superkræfter, menneske, skabelsesår, styrkeniveau);
         superhelte.add(hero);
 
@@ -30,6 +30,11 @@ public class Database {
             }
         }
         return searchResult;
+    }
+
+    public boolean deleteSuperhero (helteinfo superhero){
+        boolean succes = true;
+        return succes;
     }
 }
 
