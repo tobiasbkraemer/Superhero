@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,10 @@ class DatabaseTest {
     @BeforeEach
     void prepareTest() {
         database = new Database();
-        database.createTestData();
+        database.createHelt("Hulk", "Bruce Banner", "Styrke stiger med vrede", true, 1982, 198);
+        database.createHelt("Thor", "Thor Odinson", "Torden", false, 452, 201);
+        database.createHelt("Iron Man", "Tony Stark", "Klog og rig", true, 1984, 37);
+        database.createHelt("Spider-man", "Peter Parker","Edderkoppeevner", true, 2000, 195);
     }
 
     @Test
@@ -24,7 +26,7 @@ class DatabaseTest {
 
         //Act
         database.createHelt("Bobamok", "Bob Andersen", "Kan svæve", true, 1988, 3.7);
-        java.util.ArrayList<helteinfo> results = database.getSuperhelte();
+        java.util.ArrayList<Superhero> results = database.getAllSuperheroes();
 
         int actualSize = results.size();
         int expectedSize = 1;
@@ -39,8 +41,7 @@ class DatabaseTest {
         Database database = new Database();
 
         //Act
-        database.createTestData();
-        List<helteinfo> results = database.searchFor("Iron Man");
+        List<Superhero> results = database.searchForHero("Iron Man");
 
         int actualSize = results.size();
         int expectedSize = 1;
@@ -55,8 +56,7 @@ class DatabaseTest {
         Database database = new Database();
 
         //Act
-        database.createTestData();
-        List<helteinfo> results = database.searchFor("Captain America");
+        List<Superhero> results = database.searchForHero("Captain America");
 
         int actualSize = results.size();
         int expectedSize = 0;
@@ -67,14 +67,14 @@ class DatabaseTest {
 
     @Test
     void sletSuperhelt () {
-        java.util.ArrayList<helteinfo> results = database.getSuperhelte();
-        helteinfo superhero = results.get(0);
+        java.util.ArrayList<Superhero> results = database.getAllSuperheroes();
+        Superhero superhero = results.get(0);
         boolean actualResult = database.deleteSuperhero (superhero);
         boolean expectedResult = true;
         assertEquals(actualResult, expectedResult);
 
         int expectedSize = results.size() - 1;
-        ArrayList<helteinfo> resultsAfterDelete = database.getSuperhelte();
+        ArrayList<Superhero> resultsAfterDelete = database.getAllSuperheroes();
         int actualSize = resultsAfterDelete.size();
 
         assertEquals(actualSize, expectedSize);
