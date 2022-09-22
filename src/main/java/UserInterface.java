@@ -86,7 +86,7 @@ public class UserInterface {
         }
 
 
-        System.out.println("Hvornår fik din superhelt sine kræfter?");
+        System.out.println("Hvornår fik din superhelt sine kræfter? (Eks. \"1943\")");
         int creationYear = 0;
         do {
             try {
@@ -102,7 +102,7 @@ public class UserInterface {
             }
         } while (writingError == true);
 
-        System.out.println("Hvad er din superhelts styrkeniveau?");
+        System.out.println("Hvad er din superhelts styrkeniveau? (Eks. \" 152\")");
         double powerlevel = 0;
         do {
             try {
